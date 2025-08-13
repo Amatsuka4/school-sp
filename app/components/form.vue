@@ -1,21 +1,27 @@
 <template>
-    <div class="form" id="contact">
+    <div class="form">
         <h2>Contact</h2>
 
-        <form>
+        <form @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" v-model="name" required placeholder="Name" />
+                <input type="text" id="name" name="name" v-model="formData.name" required placeholder="Name" />
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" v-model="email" required placeholder="Email" />
+                <input type="email" id="email" name="email" v-model="formData.email" required placeholder="Email" />
             </div>
             <div class="form-group">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" v-model="message" required placeholder="Message"></textarea>
+                <textarea
+                    id="message"
+                    name="message"
+                    v-model="formData.message"
+                    required
+                    placeholder="Message"
+                ></textarea>
             </div>
-            <button type="submit">Submit</button>
+            <button>Submit</button>
         </form>
     </div>
 </template>
@@ -23,9 +29,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const name = ref("");
-const email = ref("");
-const message = ref("");
+type FormData = {
+    name: string;
+    email: string;
+    message: string;
+};
+
+const formData = ref<FormData>({
+    name: "",
+    email: "",
+    message: "",
+});
+
+const handleSubmit = () => {
+    console.log(formData.value);
+};
 </script>
 
 <style scoped>

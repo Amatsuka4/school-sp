@@ -3,8 +3,8 @@
         <div class="container">
             <a href="#top"> <h1 class="logo">LOGO</h1> </a>
             <div class="nav">
-                <a href="#">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="#form">Contact</a>
             </div>
         </div>
     </header>

@@ -7,17 +7,19 @@
         </div>
     </div>
     <div class="container">
-        <Form />
+        <About id="about" />
+        <Form id="form" />
     </div>
 </template>
 
 <script setup lang="ts">
 import Form from "../components/form.vue";
+import About from "../components/about.vue";
 </script>
 
 <style scoped>
 .container {
-    width: 60vw;
+    width: stretch;
     margin: 0 auto;
     overflow-x: hidden;
 }
