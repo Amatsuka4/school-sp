@@ -1,11 +1,10 @@
 <template>
     <header>
         <div class="container">
-            <NuxtLink to="/"> <h1 class="logo">LOGO</h1> </NuxtLink>
+            <a href="#top"> <h1 class="logo">LOGO</h1> </a>
             <div class="nav">
-                <a href="#">Home</a>
                 <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </header>
@@ -37,6 +36,13 @@ a {
     font-size: 24px;
     font-weight: bold;
     font-style: italic;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.logo:hover {
+    border-bottom: 1px solid #000;
 }
 
 .nav {
