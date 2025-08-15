@@ -1,6 +1,10 @@
 <template>
     <div class="hero">
-        <img src="https://picsum.photos/1920/1080.jpg" alt="Hero" />
+        <v-carousel hide-delimiters cycle height="70vh">
+            <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
+            <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
+            <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
+        </v-carousel>
         <div class="hero-content" id="top">
             <h1>Welcome to my website</h1>
             <p>This is the top page</p>
@@ -28,12 +32,6 @@
     height: 70vh;
     background-color: #f0f0f0;
     position: relative;
-}
-
-.hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .hero-content {
