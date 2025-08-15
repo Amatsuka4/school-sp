@@ -1,14 +1,16 @@
 <template>
     <div class="about-list-container">
         <div class="about-list">
-            <button
+            <v-btn
                 v-for="(item, index) in aboutList"
                 :key="index"
                 @click="selectItem(index)"
-                :class="{ active: selectedIndex === index }"
+                :color="selectedIndex === index ? 'primary' : 'default'"
+                class="mx-1 mb-2"
+                size="default"
             >
                 {{ item.title }}
-            </button>
+            </v-btn>
         </div>
         <div class="about-content">
             <div class="about-description">
@@ -80,30 +82,8 @@ function selectItem(index: number) {
 .about-list {
     display: flex;
     justify-content: center;
-    gap: 10px;
     margin-bottom: 30px;
     flex-wrap: wrap;
-}
-
-.about-list button {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    background: white;
-    color: #333;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-.about-list button:hover {
-    background: #f5f5f5;
-}
-
-.about-list button.active {
-    background: #333;
-    color: white;
-    border-color: #333;
 }
 
 /* コンテンツエリア */
@@ -153,13 +133,7 @@ function selectItem(index: number) {
     }
 
     .about-list {
-        gap: 8px;
         margin-bottom: 25px;
-    }
-
-    .about-list button {
-        padding: 8px 16px;
-        font-size: 13px;
     }
 
     .about-content {
