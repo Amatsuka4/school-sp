@@ -2,7 +2,7 @@
     <div class="form">
         <h2>Contact</h2>
 
-        <form @submit.prevent="handleSubmit" v-if="!isSuccess">
+        <form @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" v-model="formData.name" required placeholder="Name" />
@@ -23,9 +23,9 @@
             </div>
             <button :disabled="isLoading">Submit</button>
         </form>
-        <div v-else>
-            <h2>Thank you for your message!</h2>
-        </div>
+        <v-snackbar v-model="show" location="bottom right" timeout="3000">
+            送信が完了しました。ご連絡ありがとうございます。
+        </v-snackbar>
     </div>
 </template>
 
@@ -41,14 +41,19 @@ const formData = ref<FormData>({
 });
 
 const isLoading = ref(false);
-const isSuccess = ref(false);
+const show = ref(false);
 
 async function handleSubmit() {
     isLoading.value = true;
     try {
         const { status } = await useContactForm(formData.value);
         if (status === 200) {
-            isSuccess.value = true;
+            formData.value = {
+                name: "",
+                email: "",
+                message: "",
+            };
+            show.value = true;
         }
     } finally {
         isLoading.value = false;
