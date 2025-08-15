@@ -12,7 +12,9 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// console.log(useRuntimeConfig().public.MAPS_API_KEY);
+</script>
 
 <style scoped>
 .container {
