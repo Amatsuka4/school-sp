@@ -12,10 +12,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import Form from "../components/form.vue";
-import About from "../components/about.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .container {

@@ -2,7 +2,7 @@
     <div class="form">
         <h2>Contact</h2>
 
-        <form @submit.prevent="handleSubmit">
+        <form @submit.prevent="handleSubmit" v-if="!isSuccess">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" v-model="formData.name" required placeholder="Name" />
@@ -23,6 +23,9 @@
             </div>
             <button :disabled="isLoading">Submit</button>
         </form>
+        <div v-else>
+            <h2>Thank you for your message!</h2>
+        </div>
     </div>
 </template>
 
@@ -38,12 +41,19 @@ const formData = ref<FormData>({
 });
 
 const isLoading = ref(false);
+const isSuccess = ref(false);
 
-const handleSubmit = async () => {
+async function handleSubmit() {
     isLoading.value = true;
-    await useContactForm(formData.value);
-    isLoading.value = false;
-};
+    try {
+        const { status } = await useContactForm(formData.value);
+        if (status === 200) {
+            isSuccess.value = true;
+        }
+    } finally {
+        isLoading.value = false;
+    }
+}
 </script>
 
 <style scoped>
@@ -76,6 +86,8 @@ h2 {
     font-size: 16px;
     resize: vertical;
 }
+
+/* Submit Button */
 
 button {
     width: 100%;

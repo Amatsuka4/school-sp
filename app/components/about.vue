@@ -1,108 +1,63 @@
 <template>
     <div class="about">
         <div class="about-container">
-            <div class="about-column">
+            <div class="about-column" v-for="(column, index) in aboutColumns" :key="index">
                 <div class="about-content">
-                    <h1>This is title.</h1>
-                    <p>This is description.</p>
+                    <h1>{{ column.title }}</h1>
+                    <p>{{ column.description }}</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://picsum.photos/id/100/400/400.jpg" alt="about" />
+                    <img :src="column.image" :alt="column.title" />
                 </div>
             </div>
-            <div class="about-column">
-                <div class="about-content">
-                    <h1>This is title.</h1>
-                    <p>This is description.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://picsum.photos/id/100/400/400.jpg" alt="about" />
-                </div>
-            </div>
-            <div class="about-column">
-                <div class="about-content">
-                    <h1>This is title.</h1>
-                    <p>This is description.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://picsum.photos/id/100/400/400.jpg" alt="about" />
-                </div>
-            </div>
-        </div>
-        <div class="about-list-container">
-            <div class="about-list">
-                <button
-                    v-for="(item, index) in aboutList"
-                    :key="index"
-                    @click="selectItem(index)"
-                    :class="{ active: selectedIndex === index }"
-                >
-                    {{ item.title }}
-                </button>
-            </div>
-            <div class="about-content">
-                <div class="about-description">
-                    <h2>{{ currentItem?.title }}</h2>
-                    <p>{{ currentItem?.description }}</p>
-                </div>
-                <div class="about-image">
-                    <img :src="currentItem?.image" :alt="currentItem?.title" />
-                </div>
-            </div>
+            <List />
         </div>
     </div>
 </template>
 
-<!-- 
-
-
-
-
- -->
-
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 
-interface AboutItem {
-    title: string;
-    description: string;
-    image: string;
-}
-
-const selectedIndex = ref<number>(0);
-
-const aboutList = ref<AboutItem[]>([
+const aboutColumns = ref([
     {
-        title: "選択肢１",
-        description: "選択肢１の説明",
+        title: "This is title. 1",
+        description: "This is description.",
         image: "https://picsum.photos/id/100/400/400.jpg",
     },
     {
-        title: "選択肢２",
-        description: "選択肢２の説明",
-        image: "https://picsum.photos/id/101/400/400.jpg",
+        title: "This is title. 2",
+        description: "This is description.",
+        image: "https://picsum.photos/id/100/400/400.jpg",
     },
+
     {
-        title: "選択肢３",
-        description: "選択肢３の説明",
-        image: "https://picsum.photos/id/102/400/400.jpg",
-    },
-    {
-        title: "選択肢B",
-        description: "選択肢Bの説明",
-        image: "https://picsum.photos/id/106/400/400.jpg",
-    },
-    {
-        title: "選択肢４",
-        description: "選択肢４の説明",
-        image: "https://picsum.photos/id/103/400/400.jpg",
+        title: "This is title. 3",
+        description: "This is description.",
+        image: "https://picsum.photos/id/100/400/400.jpg",
     },
 ]);
 
-const currentItem = computed(() => aboutList.value[selectedIndex.value]);
-const selectItem = (index: number) => {
-    selectedIndex.value = index;
-};
+// スクロールでアニメーション
+onMounted(() => {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.5,
+        }
+    );
+
+    const aboutElements = document.querySelectorAll(".about-column");
+    aboutElements.forEach((element) => {
+        observer.observe(element);
+    });
+});
 </script>
 
 <style scoped>
@@ -140,75 +95,21 @@ const selectItem = (index: number) => {
     overflow: hidden;
 }
 
-.about-list-container {
+.about-image img {
     width: 100%;
-    margin: 0 auto;
-    padding: 40px 10%;
-    background-color: #fff;
+    height: 100%;
+    object-fit: cover;
 }
 
-.about-list {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+/* スクロール時アニメーション */
+.about-column {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-.about-list button {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    background: white;
-    color: #333;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.about-list button:hover {
-    background: #f5f5f5;
-}
-
-.about-list button.active {
-    background: #333;
-    color: white;
-    border-color: #333;
-}
-
-.about-list-container .about-content {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.about-description {
-    flex: 1;
-}
-
-.about-description h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-    color: #333;
-}
-
-.about-description p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #666;
-}
-
-.about-list-container .about-image {
-    flex: 1;
-}
-
-.about-list-container .about-image img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 4px;
+.about-column.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
