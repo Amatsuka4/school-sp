@@ -21,19 +21,15 @@
                     placeholder="Message"
                 ></textarea>
             </div>
-            <button>Submit</button>
+            <button :disabled="isLoading">Submit</button>
         </form>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-
-type FormData = {
-    name: string;
-    email: string;
-    message: string;
-};
+import type { FormData } from "../types/form";
+import useContactForm from "../composables/useContactForm";
 
 const formData = ref<FormData>({
     name: "",
@@ -41,8 +37,12 @@ const formData = ref<FormData>({
     message: "",
 });
 
-const handleSubmit = () => {
-    console.log(formData.value);
+const isLoading = ref(false);
+
+const handleSubmit = async () => {
+    isLoading.value = true;
+    await useContactForm(formData.value);
+    isLoading.value = false;
 };
 </script>
 
@@ -90,7 +90,12 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
     background-color: #333;
     transform: scale(1.01);
 }

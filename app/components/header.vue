@@ -1,10 +1,10 @@
 <template>
     <header>
         <div class="container">
-            <a href="#top"> <h1 class="logo">LOGO</h1> </a>
+            <a href="#top" class="hover-underline"> <h1 class="logo">LOGO</h1> </a>
             <div class="nav">
-                <a href="#about">About</a>
-                <a href="#form">Contact</a>
+                <a href="#about" class="hover-underline">About</a>
+                <a href="#form" class="hover-underline">Contact</a>
             </div>
         </div>
     </header>
@@ -15,7 +15,7 @@
 <style scoped>
 header {
     background-color: #f0f0f0;
-    padding: 10px 20px;
+    padding: 10px 10%;
     text-align: center;
     top: 0;
     width: 100%;
@@ -37,16 +37,20 @@ a {
     font-weight: bold;
     font-style: italic;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
-}
-
-.logo:hover {
-    border-bottom: 1px solid #000;
 }
 
 .nav {
     display: flex;
     gap: 20px;
+}
+
+.hover-underline {
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.hover-underline:hover {
+    border-bottom: 1px solid #000;
+    transform: scale(1.05);
 }
 </style>
