@@ -70,15 +70,21 @@ onMounted(() => {
     width: 100%;
 }
 
+/* カラムレイアウト */
 .about-column {
     width: 100%;
-    margin: 0 auto;
     padding: 40px 10%;
+    gap: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: #f0f0f0;
     text-align: center;
+
+    /*　IntersectionObserver用 */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
 .about-column:nth-child(even) {
@@ -86,13 +92,21 @@ onMounted(() => {
     flex-direction: row-reverse;
 }
 
+.about-column.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .about-content {
     width: 50%;
 }
 
+/* 画像エリア */
 .about-image {
+    height: 400px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .about-image img {
@@ -101,15 +115,45 @@ onMounted(() => {
     object-fit: cover;
 }
 
-/* スクロール時アニメーション */
-.about-column {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
-}
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .about-column {
+        flex-direction: column;
+        padding: 30px 5%;
+        gap: 30px;
+        text-align: center;
+    }
 
-.about-column.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+    .about-column:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .about-content {
+        width: 100%;
+        order: 2;
+    }
+
+    .about-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .about-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .about-image {
+        width: 100%;
+        max-width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        order: 1;
+    }
+
+    .about-image img {
+        aspect-ratio: 1;
+        border-radius: 10px;
+    }
 }
 </style>

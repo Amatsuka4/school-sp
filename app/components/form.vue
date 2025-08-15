@@ -57,16 +57,18 @@ async function handleSubmit() {
 </script>
 
 <style scoped>
-h2 {
-    text-align: center;
-}
-
+/* フォームコンテナ */
 .form {
     width: 60%;
     height: 100%;
-    margin: 20px auto; /* ページレイアウトを実装したら削除。今はフォームのみを表示するために設定中。 */
+    margin: 40px auto;
 }
 
+.form h2 {
+    text-align: center;
+}
+
+/* フォームグループ */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -77,6 +79,7 @@ h2 {
     margin-bottom: 5px;
 }
 
+/* 入力フィールド */
 .form-group input,
 .form-group textarea {
     width: 100%;
@@ -87,8 +90,11 @@ h2 {
     resize: vertical;
 }
 
-/* Submit Button */
+.form-group textarea {
+    height: 10em;
+}
 
+/* 送信ボタン */
 button {
     width: 100%;
     padding: 10px;

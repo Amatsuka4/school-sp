@@ -69,13 +69,14 @@ function selectItem(index: number) {
 </script>
 
 <style scoped>
+/* コンテナ */
 .about-list-container {
     width: 100%;
-    margin: 0 auto;
     padding: 40px 10%;
     background-color: #fff;
 }
 
+/* 選択ボタンエリア */
 .about-list {
     display: flex;
     justify-content: center;
@@ -92,6 +93,7 @@ function selectItem(index: number) {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    transition: all 0.2s ease;
 }
 
 .about-list button:hover {
@@ -104,7 +106,8 @@ function selectItem(index: number) {
     border-color: #333;
 }
 
-.about-list-container .about-content {
+/* コンテンツエリア */
+.about-content {
     display: flex;
     align-items: center;
     gap: 30px;
@@ -130,14 +133,65 @@ function selectItem(index: number) {
     color: #666;
 }
 
-.about-list-container .about-image {
+/* 画像エリア */
+.about-image {
     flex: 1;
 }
 
-.about-list-container .about-image img {
+.about-image img {
     width: 100%;
     max-width: 350px;
     height: auto;
     border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .about-list-container {
+        padding: 30px 5%;
+    }
+
+    .about-list {
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+
+    .about-list button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+
+    .about-description {
+        width: 100%;
+        order: 2;
+    }
+
+    .about-description h2 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .about-description p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .about-image {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        order: 1;
+    }
+
+    .about-image img {
+        max-width: 100%;
+    }
 }
 </style>
