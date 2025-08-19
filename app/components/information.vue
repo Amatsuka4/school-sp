@@ -1,10 +1,10 @@
 <template>
     <section class="information w-100">
-        <h2 class="text-center mb-8">会社概要</h2>
-        <div class="information-container mx-auto d-flex justify-space-between">
+        <h2 class="text-center mb-8">Company Information</h2>
+        <div class="information-container w-66 ga-8 mx-auto d-flex justify-space-between">
             <!-- 会社情報 -->
-            <div class="information-content d-flex justify-space-between">
-                <div class="information-info d-flex flex-column justify-space-between">
+            <div class="information-content d-flex justify-space-between ga-16">
+                <div class="information-info d-flex justify-space-between">
                     <div class="information-item">
                         <h3>会社名</h3>
                         <p>株式会社サンプル</p>
@@ -27,49 +27,97 @@
                     </div>
                 </div>
 
-                <div class="information-location d-flex flex-column justify-space-between">
-                    <div class="information-item">
-                        <h3>東京オフィス</h3>
-                        <p>〒100-0001<br />東京都千代田区千代田1-1-1<br />東京サンプルビル 5F</p>
-                    </div>
-                    <div class="information-item">
-                        <h3>大阪オフィス</h3>
-                        <p>〒555-0001<br />大阪府大阪市中央区大阪1-1-1<br />大阪サンプルビル 5F</p>
-                    </div>
-                    <div class="information-item">
-                        <h3>沖縄オフィス</h3>
-                        <p>〒901-0001<br />沖縄県沖縄市1-1-1<br />沖縄サンプルビル 5F</p>
+                <div class="information-location d-flex justify-space-between">
+                    <div
+                        class="information-item d-flex align-center justify-space-between ga-2"
+                        v-for="office in offices"
+                        :key="office.name"
+                    >
+                        <div class="office-info">
+                            <h3>{{ office.name }}</h3>
+                            <p>〒{{ office.postalCode }}<br />{{ office.address }}<br />{{ office.building }}</p>
+                        </div>
+                        <v-btn @click="currentOffice = office" icon="mdi-google-maps"></v-btn>
                     </div>
                 </div>
             </div>
 
             <!-- マップ -->
             <div class="information-map">
-                <GMapMap class="map-container" :center="{ lat: 35.681236, lng: 139.767125 }" :zoom="15">
-                    <GMapMarker :position="{ lat: 35.681236, lng: 139.767125 }" />
+                <GMapMap class="map-container" :center="currentOffice?.coordinates" :zoom="15">
+                    <GMapMarker :position="currentOffice?.coordinates" />
                 </GMapMap>
             </div>
         </div>
     </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+// オフィス情報のデータ構造
+interface OfficeInfo {
+    name: string;
+    postalCode: string;
+    address: string;
+    building: string;
+    coordinates?: {
+        lat: number;
+        lng: number;
+    };
+}
+
+// オフィス情報のデータ
+const offices: OfficeInfo[] = [
+    {
+        name: "東京オフィス",
+        postalCode: "100-0001",
+        address: "東京都千代田区千代田1-1-1",
+        building: "東京サンプルビル 5F",
+        coordinates: {
+            lat: 35.681236,
+            lng: 139.767125,
+        },
+    },
+    {
+        name: "大阪オフィス",
+        postalCode: "555-0001",
+        address: "大阪府大阪市中央区大阪1-1-1",
+        building: "大阪サンプルビル 5F",
+        coordinates: {
+            lat: 34.693738,
+            lng: 135.502165,
+        },
+    },
+    {
+        name: "沖縄オフィス",
+        postalCode: "901-0001",
+        address: "沖縄県沖縄市1-1-1",
+        building: "沖縄サンプルビル 5F",
+        coordinates: {
+            lat: 26.334106,
+            lng: 127.805025,
+        },
+    },
+];
+
+const currentOffice = ref(offices[0]);
+</script>
 
 <style scoped lang="sass">
 .information
-    padding: 60px 20px
+    padding: 60px 0
 
-.information-container
-    max-width: 1200px
-    gap: 40px
-
-.information-content
+.information-content,
+.information-map
     flex: 1
     max-width: 500px
 
-.information-item
-    margin-bottom: 24px
+.information-info,
+.information-location
+    flex-direction: column
 
+.information-item
     h3
         font-size: 18px
         font-weight: bold
@@ -82,19 +130,40 @@
         color: #666
 
 .information-map
-    flex: 1
-    max-width: 500px
     height: 500px
 
 .map-container
     width: 100%
     height: 100%
 
-@media (max-width: 768px)
+@media (max-width: 1480px)
     .information-container
         flex-direction: column
-        gap: 30px
+        text-align: center
 
-    .information-content, .information-map
+    .information-content
+        flex-direction: column
+
+    .information-info,
+    .information-location
+        flex-direction: row
+        gap: 16px
+
+    .information-item
+        flex: 1
+
+    .information-location .information-item
+        flex-direction: column
+
+    .information-content,
+    .information-map
         max-width: 100%
+        flex: 0 0 auto
+
+    .information-map
+        min-height: 300px
+
+@media (max-width: 768px)
+    .information-info
+        flex-direction: column
 </style>
