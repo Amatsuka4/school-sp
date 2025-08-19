@@ -32,7 +32,7 @@
                     </v-dialog>
                 </div>
                 <div class="about-image rounded-lg elevation-4 overflow-hidden">
-                    <img :src="column.image" :alt="column.title" class="w-100 h-100 object-fit-cover" />
+                    <img loading="lazy" :src="column.image" :alt="column.title" class="w-100 h-100 object-fit-cover" />
                 </div>
             </div>
         </div>

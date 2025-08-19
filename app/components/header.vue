@@ -1,9 +1,9 @@
 <template>
     <header class="text-center top-0 w-100">
         <div class="d-flex justify-space-between align-center">
-            <a href="/" class="hover-underline">
+            <NuxtLink href="/" class="hover-underline">
                 <h1 class="logo text-h5 font-weight-bold font-italic cursor-pointer">LOGO</h1>
-            </a>
+            </NuxtLink>
             <div class="d-flex ga-4">
                 <a href="#about" class="hover-underline">About</a>
                 <a href="#list" class="hover-underline">List</a>
