@@ -1,6 +1,6 @@
 <template>
     <div class="hero w-100 position-relative">
-        <v-carousel hide-delimiters cycle height="70vh">
+        <v-carousel hide-delimiters cycle height="100%">
             <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
             <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
             <v-carousel-item src="https://picsum.photos/1920/1080.jpg" cover></v-carousel-item>
@@ -29,4 +29,8 @@
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
+
+@media (max-width: 768px)
+    .hero
+        height: 85vh
 </style>
