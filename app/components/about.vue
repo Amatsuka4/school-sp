@@ -1,11 +1,15 @@
 <template>
-    <div class="about">
-        <div class="about-container">
-            <div class="about-column" v-for="(column, index) in aboutColumns" :key="index">
-                <div class="about-content d-flex justify-space-between flex-column">
+    <div class="about d-flex flex-column">
+        <div class="about-container w-100">
+            <div
+                class="about-column text-center w-100 d-flex justify-space-between"
+                v-for="(column, index) in aboutColumns"
+                :key="index"
+            >
+                <div class="about-content w-100 w-md-50 d-flex justify-space-between flex-column">
                     <div class="about-text">
-                        <h1>{{ column.title }}</h1>
-                        <p>{{ column.description }}</p>
+                        <h1 class="text-h4 text-md-h3 mb-4">{{ column.title }}</h1>
+                        <p class="text-body-1">{{ column.description }}</p>
                     </div>
                     <v-dialog max-width="500">
                         <template v-slot:activator="{ props: activatorProps }">
@@ -27,7 +31,7 @@
                         </template>
                     </v-dialog>
                 </div>
-                <div class="about-image">
+                <div class="about-image rounded-lg elevation-4 overflow-hidden">
                     <img :src="column.image" :alt="column.title" />
                 </div>
             </div>
@@ -83,100 +87,58 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.about {
-    display: flex;
-    flex-direction: column;
-}
-
-.about-container {
-    width: 100%;
-}
-
+<style scoped lang="sass">
 /* カラムレイアウト */
-.about-column {
-    width: 100%;
-    padding: 40px 10%;
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #f0f0f0;
-    text-align: center;
+.about-column
+    padding: 40px 10%
+    gap: 20px
+    background-color: #f0f0f0
 
     /*　IntersectionObserver用 */
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
-}
+    opacity: 0
+    transform: translateY(30px)
+    transition: opacity 1s ease, transform 1s ease
 
-.about-column:nth-child(even) {
-    background-color: #fff;
-    flex-direction: row-reverse;
-}
+.about-column:nth-child(even)
+    background-color: #fff
+    flex-direction: row-reverse
 
-.about-column.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.about-content {
-    width: 50%;
-}
+.about-column.is-visible
+    opacity: 1
+    transform: translateY(0)
 
 /* 画像エリア */
-.about-image {
-    height: 400px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+.about-image
+    height: 400px
 
-.about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
 
 /* レスポンシブ */
-@media (max-width: 768px) {
-    .about-column {
-        flex-direction: column;
-        padding: 30px 5%;
-        gap: 30px;
-        text-align: center;
-    }
+@media (max-width: 768px)
+    .about-column
+        flex-direction: column
+        padding: 30px 5%
+        gap: 30px
 
-    .about-column:nth-child(even) {
-        flex-direction: column;
-    }
+        &:nth-child(even)
+            flex-direction: column
 
-    .about-content {
-        width: 100%;
-        order: 2;
-    }
+    .about-content
+        width: 100%
+        order: 2
 
-    .about-content h1 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
+    /* タイポグラフィは Vuetify ユーティリティで指定 */
 
-    .about-content p {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
+    .about-image
+        width: 100%
+        max-width: 300px
+        height: 300px
+        margin: 0 auto
+        order: 1
 
-    .about-image {
-        width: 100%;
-        max-width: 300px;
-        height: 300px;
-        margin: 0 auto;
-        order: 1;
-    }
-
-    .about-image img {
-        aspect-ratio: 1;
-        border-radius: 10px;
-    }
-}
+        img
+            aspect-ratio: 1
 </style>
