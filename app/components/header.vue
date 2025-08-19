@@ -1,9 +1,12 @@
 <template>
-    <header>
-        <div class="container">
-            <a href="#top" class="hover-underline"> <h1 class="logo">LOGO</h1> </a>
-            <div class="nav">
+    <header class="text-center top-0 w-100">
+        <div class="d-flex justify-space-between align-center">
+            <a href="/" class="hover-underline">
+                <h1 class="logo text-h5 font-weight-bold font-italic cursor-pointer">LOGO</h1>
+            </a>
+            <div class="d-flex ga-4">
                 <a href="#about" class="hover-underline">About</a>
+                <a href="#list" class="hover-underline">List</a>
                 <a href="#form" class="hover-underline">Contact</a>
             </div>
         </div>
@@ -12,45 +15,20 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
-header {
-    background-color: #f0f0f0;
-    padding: 10px 10%;
-    text-align: center;
-    top: 0;
-    width: 100%;
-}
+<style scoped lang="sass">
+header
+    background-color: #f0f0f0
+    padding: 10px 10%
 
-a {
-    text-decoration: none;
-    color: #000;
-}
+a
+    text-decoration: none
+    color: #000
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.hover-underline
+    border-bottom: 1px solid transparent
+    transition: all 0.3s ease
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    font-style: italic;
-    cursor: pointer;
-}
-
-.nav {
-    display: flex;
-    gap: 20px;
-}
-
-.hover-underline {
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.hover-underline:hover {
-    border-bottom: 1px solid #000;
-    transform: scale(1.05);
-}
+    &:hover
+        border-bottom: 1px solid #000
+        transform: scale(1.05)
 </style>

@@ -2,7 +2,7 @@
     <div class="about d-flex flex-column">
         <div class="about-container w-100">
             <div
-                class="about-column text-center w-100 d-flex justify-space-between"
+                class="about-column text-center w-100 d-flex justify-space-between ga4"
                 v-for="(column, index) in aboutColumns"
                 :key="index"
             >
@@ -32,7 +32,7 @@
                     </v-dialog>
                 </div>
                 <div class="about-image rounded-lg elevation-4 overflow-hidden">
-                    <img :src="column.image" :alt="column.title" />
+                    <img :src="column.image" :alt="column.title" class="w-100 h-100 object-fit-cover" />
                 </div>
             </div>
         </div>
@@ -91,7 +91,6 @@ onMounted(() => {
 /* カラムレイアウト */
 .about-column
     padding: 40px 10%
-    gap: 20px
     background-color: #f0f0f0
 
     /*　IntersectionObserver用 */
@@ -111,11 +110,6 @@ onMounted(() => {
 .about-image
     height: 400px
 
-    img
-        width: 100%
-        height: 100%
-        object-fit: cover
-
 /* レスポンシブ */
 @media (max-width: 768px)
     .about-column
@@ -129,8 +123,6 @@ onMounted(() => {
     .about-content
         width: 100%
         order: 2
-
-    /* タイポグラフィは Vuetify ユーティリティで指定 */
 
     .about-image
         width: 100%

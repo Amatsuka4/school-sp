@@ -1,6 +1,6 @@
 <template>
-    <div class="form">
-        <h2>Contact</h2>
+    <div class="h-100 my-10 mx-auto w-66">
+        <h2 class="text-center">Contact</h2>
 
         <form @submit.prevent="handleSubmit">
             <div class="form-group">
@@ -21,7 +21,13 @@
                     placeholder="Message"
                 ></textarea>
             </div>
-            <button :disabled="isLoading">Submit</button>
+            <button
+                :disabled="isLoading"
+                :class="['submit-button', { loading: isLoading }]"
+                class="w-100 pa-2 text-white rounded border-none mt-4"
+            >
+                {{ isLoading ? "送信中..." : "Submit" }}
+            </button>
         </form>
         <v-snackbar v-model="show" location="bottom right" timeout="3000">
             送信が完了しました。ご連絡ありがとうございます。
@@ -61,65 +67,44 @@ async function handleSubmit() {
 }
 </script>
 
-<style scoped>
-/* フォームコンテナ */
-.form {
-    width: 60%;
-    height: 100%;
-    margin: 40px auto;
-}
+<style scoped lang="sass">
+// フォーム入力欄の共通スタイル
+.form-group
+    display: flex
+    flex-direction: column
+    margin-bottom: 10px
 
-.form h2 {
-    text-align: center;
-}
+    input,
+    textarea
+        width: 100%
+        padding: 10px
+        border: 1px solid #ccc
+        border-radius: 4px
+        font-size: 16px
+        resize: vertical
 
-/* フォームグループ */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
+    textarea
+        height: 10em
 
-.form-group label {
-    margin-bottom: 5px;
-}
+    label
+        margin-bottom: 5px
 
-/* 入力フィールド */
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: vertical;
-}
 
-.form-group textarea {
-    height: 10em;
-}
+// ボタンのスタイル・アニメーション
+.submit-button
+    background-color: #000
+    cursor: pointer
+    transition: all 0.3s ease
+    transform: scale(1)
 
-/* 送信ボタン */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-}
+    &:hover:not(:disabled)
+        background-color: #333
+        transform: scale(1.01)
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-    background-color: #333;
-    transform: scale(1.01);
-}
+.submit-button:disabled,
+.submit-button.loading
+    background-color: #ccc !important
+    cursor: not-allowed !important
+    transform: scale(0.98)
+    opacity: 0.7
 </style>

@@ -70,102 +70,85 @@ function selectItem(index: number) {
 }
 </script>
 
-<style scoped>
-/* コンテナ */
-.about-list-container {
-    width: 100%;
-    padding: 40px 10%;
-    background-color: #fff;
-}
+<style scoped lang="sass">
+// コンテナ
+.about-list-container
+    width: 100%
+    padding: 40px 10%
+    background-color: #fff
 
-/* 選択ボタンエリア */
-.about-list {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
+// 選択ボタンエリア
+.about-list
+    display: flex
+    justify-content: center
+    margin-bottom: 30px
+    flex-wrap: wrap
 
-/* コンテンツエリア */
-.about-content {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
+// コンテンツエリア
+.about-content
+    display: flex
+    align-items: center
+    gap: 30px
+    width: 100%
+    max-width: 1000px
+    margin: 0 auto
 
-.about-description {
-    flex: 1;
-}
+.about-description
+    flex: 1
 
-.about-description h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-    color: #333;
-}
+    h2
+        font-size: 1.8rem
+        margin-bottom: 15px
+        font-weight: 600
+        color: #333
 
-.about-description p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #666;
-}
+    p
+        font-size: 1rem
+        line-height: 1.5
+        color: #666
 
-/* 画像エリア */
-.about-image {
-    flex: 1;
-}
+// 画像エリア
+.about-image
+    flex: 1
 
-.about-image img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+    img
+        width: 100%
+        max-width: 350px
+        height: auto
+        border-radius: 10px
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1)
 
-/* レスポンシブ */
-@media (max-width: 768px) {
-    .about-list-container {
-        padding: 30px 5%;
-    }
+// レスポンシブ
+@media (max-width: 768px)
+    .about-list-container
+        padding: 30px 5%
 
-    .about-list {
-        margin-bottom: 25px;
-    }
+    .about-list
+        margin-bottom: 25px
 
-    .about-content {
-        flex-direction: column;
-        gap: 25px;
-        text-align: center;
-    }
+    .about-content
+        flex-direction: column
+        gap: 25px
+        text-align: center
 
-    .about-description {
-        width: 100%;
-        order: 2;
-    }
+    .about-description
+        width: 100%
+        order: 2
 
-    .about-description h2 {
-        font-size: 1.5rem;
-        margin-bottom: 12px;
-    }
+        h2
+            font-size: 1.5rem
+            margin-bottom: 12px
 
-    .about-description p {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
+        p
+            font-size: 0.95rem
+            line-height: 1.6
 
-    .about-image {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-        order: 1;
-    }
+    .about-image
+        width: 100%
+        max-width: 280px
+        margin: 0 auto
+        order: 1
 
-    .about-image img {
-        max-width: 100%;
-    }
-}
+        img
+            max-width: 100%
 </style>

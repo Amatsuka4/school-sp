@@ -1,25 +1,14 @@
 <template>
-    <footer>
+    <footer class="py-4 text-center relative w-100 border-t">
         <div class="container">
-            <p class="copyright">Copyright 2025</p>
+            <p class="text-body-2">Copyright 2025</p>
         </div>
     </footer>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped>
-footer {
-    background-color: #f0f0f0;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    width: 100%;
-    border-top: 1px solid #e0e0e0;
-}
-
-.copyright {
-    color: #1a1a1a;
-    font-size: 12px;
-}
+<style scoped lang="sass">
+footer
+    background-color: #f0f0f0
 </style>
