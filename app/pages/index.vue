@@ -13,13 +13,12 @@
     <div class="container w-100 mx-auto overflow-x-hidden">
         <About id="about" />
         <List id="list" />
+        <Information id="information" />
         <Form id="form" />
     </div>
 </template>
 
-<script setup lang="ts">
-// console.log(useRuntimeConfig().public.MAPS_API_KEY);
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="sass">
 .hero

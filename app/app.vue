@@ -8,6 +8,8 @@
     </NuxtLayout>
 </template>
 
+<script setup lang="ts"></script>
+
 <style lang="sass">
 html
     scroll-behavior: smooth

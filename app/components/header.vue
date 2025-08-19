@@ -7,6 +7,7 @@
             <div class="d-flex ga-4">
                 <a href="#about" class="hover-underline">About</a>
                 <a href="#list" class="hover-underline">List</a>
+                <a href="#information" class="hover-underline">Information</a>
                 <a href="#form" class="hover-underline">Contact</a>
             </div>
         </div>
