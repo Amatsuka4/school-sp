@@ -2,15 +2,35 @@
     <div class="about">
         <div class="about-container">
             <div class="about-column" v-for="(column, index) in aboutColumns" :key="index">
-                <div class="about-content">
-                    <h1>{{ column.title }}</h1>
-                    <p>{{ column.description }}</p>
+                <div class="about-content d-flex justify-space-between flex-column">
+                    <div class="about-text">
+                        <h1>{{ column.title }}</h1>
+                        <p>{{ column.description }}</p>
+                    </div>
+                    <v-dialog max-width="500">
+                        <template v-slot:activator="{ props: activatorProps }">
+                            <v-btn v-bind="activatorProps" text="Read More"></v-btn>
+                        </template>
+
+                        <template v-slot:default="{ isActive }">
+                            <v-card title="Dialog">
+                                <v-card-text>
+                                    {{ column.dialogMessage }}
+                                </v-card-text>
+
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+
+                                    <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </template>
+                    </v-dialog>
                 </div>
                 <div class="about-image">
                     <img :src="column.image" :alt="column.title" />
                 </div>
             </div>
-            <List />
         </div>
     </div>
 </template>
@@ -23,21 +43,24 @@ const aboutColumns = ref([
         title: "This is title. 1",
         description: "This is description.",
         image: "https://picsum.photos/id/100/400/400.jpg",
+        dialogMessage: "This is dialog message. 1",
     },
     {
         title: "This is title. 2",
         description: "This is description.",
         image: "https://picsum.photos/id/100/400/400.jpg",
+        dialogMessage: "This is dialog message. 2",
     },
 
     {
         title: "This is title. 3",
         description: "This is description.",
         image: "https://picsum.photos/id/100/400/400.jpg",
+        dialogMessage: "This is dialog message. 3",
     },
 ]);
 
-// スクロールでアニメーション
+// IntersectionObserver
 onMounted(() => {
     const observer = new IntersectionObserver(
         (entries) => {
@@ -49,7 +72,7 @@ onMounted(() => {
             });
         },
         {
-            threshold: 0.5,
+            threshold: 0.1,
         }
     );
 
