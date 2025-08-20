@@ -46,7 +46,12 @@
 
             <!-- マップ -->
             <div class="information-map">
-                <GMapMap class="map-container w-100 h-100" :center="currentOffice?.coordinates" :zoom="15">
+                <GMapMap
+                    class="map-container w-100 h-100"
+                    :center="currentOffice?.coordinates"
+                    :zoom="15"
+                    style="border-radius: 8px"
+                >
                     <GMapMarker :position="currentOffice?.coordinates" />
                 </GMapMap>
             </div>
