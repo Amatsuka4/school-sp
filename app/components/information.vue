@@ -1,41 +1,43 @@
 <template>
-    <section class="information w-100">
+    <section class="information w-100 pt-15 pb-15">
         <h2 class="text-center mb-8">Company Information</h2>
         <div class="information-container w-66 ga-8 mx-auto d-flex justify-space-between">
             <!-- 会社情報 -->
             <div class="information-content d-flex justify-space-between ga-16">
-                <div class="information-info d-flex justify-space-between">
+                <div class="information-info d-flex justify-space-between flex-column">
                     <div class="information-item">
-                        <h3>会社名</h3>
-                        <p>株式会社サンプル</p>
+                        <h3 class="text-h6 font-weight-bold mb-2">会社名</h3>
+                        <p class="text-body-1">株式会社サンプル</p>
                     </div>
                     <div class="information-item">
-                        <h3>設立</h3>
-                        <p>2020年4月1日</p>
+                        <h3 class="text-h6 font-weight-bold mb-2">設立</h3>
+                        <p class="text-body-1">2020年4月1日</p>
                     </div>
                     <div class="information-item">
-                        <h3>代表取締役</h3>
-                        <p>山田 太郎</p>
+                        <h3 class="text-h6 font-weight-bold mb-2">代表取締役</h3>
+                        <p class="text-body-1">山田 太郎</p>
                     </div>
                     <div class="information-item">
-                        <h3>電話番号</h3>
-                        <p>03-1234-5678</p>
+                        <h3 class="text-h6 font-weight-bold mb-2">電話番号</h3>
+                        <p class="text-body-1">03-1234-5678</p>
                     </div>
                     <div class="information-item">
-                        <h3>事業内容</h3>
-                        <p>Webシステム開発<br />モバイルアプリ開発<br />ITコンサルティング</p>
+                        <h3 class="text-h6 font-weight-bold mb-2">事業内容</h3>
+                        <p class="text-body-1">Webシステム開発<br />モバイルアプリ開発<br />ITコンサルティング</p>
                     </div>
                 </div>
 
-                <div class="information-location d-flex justify-space-between">
+                <div class="information-location d-flex justify-space-between flex-column">
                     <div
                         class="information-item d-flex align-center justify-space-between ga-2"
                         v-for="office in offices"
                         :key="office.name"
                     >
                         <div class="office-info">
-                            <h3>{{ office.name }}</h3>
-                            <p>〒{{ office.postalCode }}<br />{{ office.address }}<br />{{ office.building }}</p>
+                            <h3 class="text-h6 font-weight-bold mb-2">{{ office.name }}</h3>
+                            <p class="text-body-1">
+                                〒{{ office.postalCode }}<br />{{ office.address }}<br />{{ office.building }}
+                            </p>
                         </div>
                         <v-btn @click="currentOffice = office" icon="mdi-google-maps"></v-btn>
                     </div>
@@ -44,7 +46,7 @@
 
             <!-- マップ -->
             <div class="information-map">
-                <GMapMap class="map-container" :center="currentOffice?.coordinates" :zoom="15">
+                <GMapMap class="map-container w-100 h-100" :center="currentOffice?.coordinates" :zoom="15">
                     <GMapMarker :position="currentOffice?.coordinates" />
                 </GMapMap>
             </div>
@@ -105,36 +107,21 @@ const currentOffice = ref(offices[0]);
 </script>
 
 <style scoped lang="sass">
-.information
-    padding: 60px 0
 
 .information-content,
 .information-map
     flex: 1
     max-width: 500px
 
-.information-info,
-.information-location
-    flex-direction: column
-
 .information-item
     h3
-        font-size: 18px
-        font-weight: bold
-        margin-bottom: 8px
         color: #333
 
     p
-        font-size: 16px
-        line-height: 1.6
         color: #666
 
 .information-map
     height: 500px
-
-.map-container
-    width: 100%
-    height: 100%
 
 @media (max-width: 1480px)
     .information-container

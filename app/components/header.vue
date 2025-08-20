@@ -44,6 +44,8 @@ a
         border-bottom: 1px solid #000
         transform: scale(1.05)
 
+/* モード切り替え */
+
 .fade-enter-active,
 .fade-leave-active
     transition: all 0.3s ease-in-out
