@@ -10,11 +10,20 @@
                 <a href="#information" class="hover-underline">Information</a>
                 <a href="#form" class="hover-underline">Contact</a>
             </div>
+            <v-btn @click="toggleMode">
+                <v-icon v-if="modeState.mode === 'light'">mdi-lightbulb-on</v-icon>
+                <v-icon v-else>mdi-lightbulb-outline</v-icon>
+            </v-btn>
         </div>
     </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useModeState } from "../composables/useModeState";
+const modeState = useModeState();
+
+const { toggleMode } = modeState;
+</script>
 
 <style scoped lang="sass">
 header

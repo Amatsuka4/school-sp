@@ -9,6 +9,7 @@ export default defineNuxtConfig({
             MAPS_API_KEY: process.env.NUXT_PUBLIC_MAPS_API_KEY,
         },
     },
+    modules: ["@pinia/nuxt", "pinia-plugin-persistedstate/nuxt"],
     build: { transpile: ["vuetify", "@fawmi/vue-google-maps"] },
     vite: {
         vue: { template: { transformAssetUrls } },
