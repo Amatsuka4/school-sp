@@ -10,10 +10,12 @@
                 <a href="#information" class="hover-underline">Information</a>
                 <a href="#form" class="hover-underline">Contact</a>
             </div>
-            <v-btn @click="toggleMode">
-                <v-icon v-if="modeState.mode === 'light'">mdi-lightbulb-on</v-icon>
-                <v-icon v-else>mdi-lightbulb-outline</v-icon>
-            </v-btn>
+            <transition name="fade" mode="out-in" appear>
+                <v-btn @click="toggleMode" key="btn" :class="modeState.mode === 'light' ? 'btn-light' : 'btn-dark'">
+                    <v-icon v-if="modeState.mode === 'light'">mdi-lightbulb-on</v-icon>
+                    <v-icon v-else>mdi-lightbulb-outline</v-icon>
+                </v-btn>
+            </transition>
         </div>
     </header>
 </template>
@@ -41,4 +43,20 @@ a
     &:hover
         border-bottom: 1px solid #000
         transform: scale(1.05)
+
+.fade-enter-active,
+.fade-leave-active
+    transition: all 0.3s ease-in-out
+
+.fade-enter-from,
+.fade-leave-to
+    opacity: 0
+
+.btn-light
+    background-color: #fff
+    color: #000
+
+.btn-dark
+    background-color: #000
+    color: #fff
 </style>
