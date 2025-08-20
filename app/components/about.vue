@@ -1,7 +1,7 @@
 <template>
     <div class="about d-flex flex-column">
         <div class="about-container w-100">
-            <div
+            <!-- <div
                 class="about-column text-center w-100 d-flex justify-space-between ga4"
                 v-for="(column, index) in aboutColumns"
                 :key="index"
@@ -34,32 +34,74 @@
                 <div class="about-image rounded-lg elevation-4 overflow-hidden">
                     <img loading="lazy" :src="column.image" :alt="column.title" class="w-100 h-100 object-fit-cover" />
                 </div>
-            </div>
+            </div> -->
+
+            <!-- 半ば強制的にDraggableComponentを使用 -->
+            <draggableComponent v-model="aboutColumns" item-key="title">
+                <template #item="{ element }">
+                    <div class="about-column text-center w-100 d-flex justify-space-between ga4">
+                        <div class="about-content w-100 w-md-50 d-flex justify-space-between flex-column">
+                            <div class="about-text">
+                                <h1 class="text-h4 text-md-h3 mb-4">{{ element.title }}</h1>
+                                <p class="text-body-1">{{ element.description }}</p>
+                            </div>
+                            <v-dialog max-width="500">
+                                <template v-slot:activator="{ props: activatorProps }">
+                                    <v-btn v-bind="activatorProps" text="Read More"></v-btn>
+                                </template>
+
+                                <template v-slot:default="{ isActive }">
+                                    <v-card title="Dialog">
+                                        <v-card-text>
+                                            {{ element.dialogMessage }}
+                                        </v-card-text>
+
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+
+                                            <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </template>
+                            </v-dialog>
+                        </div>
+                        <div class="about-image rounded-lg elevation-4 overflow-hidden">
+                            <img
+                                loading="lazy"
+                                :src="element.image"
+                                :alt="element.title"
+                                class="w-100 h-100 object-fit-cover"
+                            />
+                        </div>
+                    </div>
+                </template>
+            </draggableComponent>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import draggableComponent from "vuedraggable";
 
 const aboutColumns = ref([
     {
         title: "This is title. 1",
         description: "This is description.",
-        image: "https://picsum.photos/id/100/400/400.jpg",
+        image: "https://picsum.photos/id/120/400/400.jpg",
         dialogMessage: "This is dialog message. 1",
     },
     {
         title: "This is title. 2",
         description: "This is description.",
-        image: "https://picsum.photos/id/100/400/400.jpg",
+        image: "https://picsum.photos/id/140/400/400.jpg",
         dialogMessage: "This is dialog message. 2",
     },
 
     {
         title: "This is title. 3",
         description: "This is description.",
-        image: "https://picsum.photos/id/100/400/400.jpg",
+        image: "https://picsum.photos/id/160/400/400.jpg",
         dialogMessage: "This is dialog message. 3",
     },
 ]);
